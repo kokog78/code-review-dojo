@@ -24,7 +24,7 @@ public class MorseTranslator {
 					// a szóközt kihagyjuk
 					break;
 				default:
-					String morse = abc.getMorseSignByCharacter(c);
+					String morse = abc.getMorseCodeByCharacter(c);
 					if (morse == null) {
 						throw new IllegalArgumentException(String.format("Cannot find morse sign for: %s", c));
 					}
@@ -41,7 +41,7 @@ public class MorseTranslator {
 	
 	/**
 	 * Ellenőrzi, hogy a megadott morze sztring érvényes kódokat tartalmaz-e.
-	 * A bemenetben a rövid jelek 0-val, a hosszú jelek 1-gyel szerepelnek.
+	 * A bemenetben a rövid jelek "."-tal, a hosszú jelek "-"-sal szerepelnek.
 	 * Az egyes betűk között egy vagy több szóköz, tabulátor vagy sortörés van.
 	 * A metódus akkor tér vissza <code>true</code> értékkel, ha a bemenet csak érvényes
 	 * morze jeleket, szóközöket, tabulátorokat és sortöréseket tartalmaz.
@@ -49,7 +49,19 @@ public class MorseTranslator {
 	 * @return a bemenet érvényes morze kódot tartalmaz?
 	 */
 	public boolean isValidMorseString(String morse) {
-		return false;
+		if (morse == null) {
+			return false;
+		}
+		String[] codes = morse.split("\\s");
+		for (String code : codes) {
+			if (!code.isEmpty()) {
+				Character c = abc.getCharacterByMorseCode(code);
+				if (c == null) {
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 	
 	/**
@@ -76,9 +88,8 @@ public class MorseTranslator {
 	
 	/**
 	 * Visszaadja a morzejelekhez tartozó betűket.
-	 * A bemenetben a rövid jelek 0-val, a hosszú jelek 1-gyel szerepelnek.
+	 * A bemenetben a rövid jelek "."-tal, a hosszú jelek "-"-sal szerepelnek.
 	 * Az egyes betűk között egy vagy több szóköz, tabulátor vagy sortörés van.
-	 * Ha a bemenet <code>null</code> vagy üres sztring, üres sztringet ad.
 	 * @param morse a morze jeleket tartalmazó sztring
 	 * @return a lefordított karaktereket tartalmazó sztring
 	 */

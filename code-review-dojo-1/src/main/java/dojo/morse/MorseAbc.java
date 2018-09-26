@@ -23,7 +23,7 @@ class MorseAbc {
 		}
 	}
 	
-	public String getMorseSignByCharacter(char c) {
+	public String getMorseCodeByCharacter(char c) {
 		MorseCode morse = signsByCharacter.get(c);
 		if (morse == null) {
 			morse = signsByCharacter.get(Character.toUpperCase(c));
@@ -31,8 +31,8 @@ class MorseAbc {
 		return (morse == null ? null : morse.getCode());
 	}
 	
-	public Character getCharacterByMorseCode(String sign) {
-		MorseCode morse = signsByMorse.get(sign);
+	public Character getCharacterByMorseCode(String code) {
+		MorseCode morse = signsByMorse.get(code);
 		return (morse == null ? null : morse.getCharacter());
 	}
 	

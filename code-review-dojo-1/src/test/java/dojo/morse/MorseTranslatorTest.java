@@ -24,13 +24,13 @@ public class MorseTranslatorTest {
 	@Test
 	public void translateToMorseString_should_tanslate_text_to_morse() throws Exception {
 		String result = translator.translateToMorseString("ABC");
-		assertThat(result).isEqualTo("01 1000 1010");
+		assertThat(result).isEqualTo(".- -... -.-.");
 	}
 
 	@Test
 	public void translateToMorseString_should_skip_whitespaces() throws Exception {
 		String result = translator.translateToMorseString("\r\nA B\t\n\rC");
-		assertThat(result).isEqualTo("01 1000 1010");
+		assertThat(result).isEqualTo(".- -... -.-.");
 	}
 
 	@Test
@@ -38,5 +38,29 @@ public class MorseTranslatorTest {
 		assertThatThrownBy(() -> translator.translateToMorseString("ABC."))
 			.isInstanceOf(IllegalArgumentException.class)
 			.hasMessageContaining(".");
+	}
+	
+	@Test
+	public void isValidMorseString_should_return_false_for_null() throws Exception {
+		boolean result = translator.isValidMorseString(null);
+		assertThat(result).isFalse();
+	}
+	
+	@Test
+	public void isValidMorseString_should_return_true_for_empty_string() throws Exception {
+		boolean result = translator.isValidMorseString("");
+		assertThat(result).isTrue();
+	}
+	
+	@Test
+	public void isValidMorseString_should_return_true_for_valid_morse_code() throws Exception {
+		boolean result = translator.isValidMorseString(".- -... -.-.");
+		assertThat(result).isTrue();
+	}
+	
+	@Test
+	public void isValidMorseString_should_return_false_for_invalid_morse_code() throws Exception {
+		boolean result = translator.isValidMorseString("......");
+		assertThat(result).isFalse();
 	}
 }
