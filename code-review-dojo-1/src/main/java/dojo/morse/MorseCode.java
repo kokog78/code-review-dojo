@@ -17,18 +17,4 @@ public class MorseCode {
 	public String getCode() {
 		return code;
 	}
-	
-	@Override
-	public int hashCode() {
-		return Character.hashCode(character) ^ code.hashCode();
-	}
-	
-	@Override
-	public boolean equals(Object obj) {
-		if (obj instanceof MorseCode) {
-			MorseCode other = (MorseCode)obj;
-			return character == other.character && code.equals(other.code);
-		}
-		return false;
-	}
 }
