@@ -92,7 +92,7 @@ public class MorseTranslator {
 	 * @param morse a morze jeleket tartalmazó tömb
 	 * @return a lefordított karaktereket tartalmazó sztring
 	 */
-	public String translateToLetters(MorseCode ... signs) {
+	public String translateToLetters(MorseCode ... codes) {
 		return null;
 	}
 	
