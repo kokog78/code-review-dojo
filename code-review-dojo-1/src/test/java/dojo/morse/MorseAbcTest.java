@@ -42,22 +42,22 @@ public class MorseAbcTest {
 	}
 
 	@Test
-	public void getCharacterByMorseSign_should_return_null_without_initialization() throws Exception {
-		Character morseSign = abc.getCharacterByMorseSign("110");
+	public void getCharacterByMorseCode_should_return_null_without_initialization() throws Exception {
+		Character morseSign = abc.getCharacterByMorseCode("110");
 		assertThat(morseSign).isNull();
 	}
 
 	@Test
-	public void getCharacterByMorseSign_should_return_null_for_invalid_sign() throws Exception {
+	public void getCharacterByMorseCode_should_return_null_for_invalid_sign() throws Exception {
 		abc.init();
-		Character morseSign = abc.getCharacterByMorseSign("000000");
+		Character morseSign = abc.getCharacterByMorseCode("000000");
 		assertThat(morseSign).isNull();
 	}
 
 	@Test
-	public void getCharacterByMorseSign_should_return_character_valid_sign() throws Exception {
+	public void getCharacterByMorseCode_should_return_character_valid_sign() throws Exception {
 		abc.init();
-		Character morseSign = abc.getCharacterByMorseSign("110");
+		Character morseSign = abc.getCharacterByMorseCode("110");
 		assertThat(morseSign).isEqualTo('G');
 	}
 
