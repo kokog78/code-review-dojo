@@ -22,7 +22,7 @@ public class MorseTranslatorTest {
 	}
 
 	@Test
-	public void translateToMorseString_should_tanslate_text_to_morse() throws Exception {
+	public void translateToMorseString_should_translate_text_to_morse() throws Exception {
 		String result = translator.translateToMorseString("ABC");
 		assertThat(result).isEqualTo(".- -... -.-.");
 	}

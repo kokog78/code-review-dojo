@@ -26,7 +26,7 @@ public class MorseTranslator {
 				default:
 					String morse = abc.getMorseCodeByCharacter(c);
 					if (morse == null) {
-						throw new IllegalArgumentException(String.format("Cannot find morse sign for: %s", c));
+						throw new IllegalArgumentException(String.format("Cannot find morse code for: %s", c));
 					}
 					if (result.length() > 0) {
 						result.append(' ');
