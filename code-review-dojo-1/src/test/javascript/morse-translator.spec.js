@@ -67,4 +67,28 @@ describe('MorseTranslator', () => {
 
     });
 
+    describe('canBeTranslatedToMorse()', () => {
+        
+                it('should return true for characters', () => {
+                    const result = translator.canBeTranslatedToMorse('asdf');
+                    expect(result).to.be.true;
+                });
+
+                it('should return true for space', () => {
+                    const result = translator.canBeTranslatedToMorse(' ');
+                    expect(result).to.be.true;
+                });
+
+                it('should return true for tab', () => {
+                    const result = translator.canBeTranslatedToMorse('   ');
+                    expect(result).to.be.true;
+                });
+
+                it('should return true for numbers', () => {
+                    const result = translator.canBeTranslatedToMorse('058');
+                    expect(result).to.be.true;
+                });
+        
+            });
+
 });

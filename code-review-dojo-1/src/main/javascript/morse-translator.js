@@ -67,6 +67,14 @@ module.exports = class MorseTranslator {
      */
     canBeTranslatedToMorse(text) {
 
+        // let regularExpression = /\w+/;
+        let regularExpression = /\w+\s+/;
+
+        if(regularExpression.test(text) === true){
+            return true
+        }else{
+            return false
+        }
     }
 
     /**
