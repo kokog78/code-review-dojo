@@ -100,11 +100,30 @@ public class MorseTranslator {
 	/**
 	 * Visszaadja a morzejelekhez tartozó betűket.
 	 * Sosem ad vissza <code>null</code> értéket.
-	 * @param morse a morze jeleket tartalmazó tömb
+	 * @param codes a morze jeleket tartalmazó tömb
 	 * @return a lefordított karaktereket tartalmazó sztring
 	 */
-	public String translateToLetters(MorseCode ... codes) {
-		return null;
+	public String translateToLetters(boolean onlyValidCodeTranslate, MorseCode ... codes) {
+		StringBuffer result = new StringBuffer();
+		if(checkInput(codes)) {
+			for (MorseCode morseCode : codes) {
+				if(morseCode != null) {
+					char character = morseCode.getCharacter();
+					if(onlyValidCodeTranslate) {
+						if(isValidMorseString(morseCode.getCode())){
+							result.append(character);
+						}
+					}else {
+						result.append(character);
+					}
+				}
+			}
+		}
+		return result.toString();
+	}
+
+	private boolean checkInput(MorseCode... codes){
+		return codes != null && codes.length > 0;
 	}
 	
 }
