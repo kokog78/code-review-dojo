@@ -1,5 +1,6 @@
 package dojo.morse;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MorseTranslator {
@@ -83,7 +84,19 @@ public class MorseTranslator {
 	 * @return a lefordított morzejelek
 	 */
 	public List<MorseCode> translateToMorseCodes(String text) {
-		return null;
+		List<MorseCode> result = new ArrayList<>();
+		if(text == null || text.equals("")) {
+			return result;
+		}
+
+		text = text.replaceAll("\\s+","");
+		for (char character : text.toCharArray()) {
+			if(abc.getMorseCodeByCharacter(character) == null) {
+				throw new IllegalArgumentException();
+			}
+			result.add(new MorseCode(character, abc.getMorseCodeByCharacter(character)));
+		}
+		return result;
 	}
 	
 	/**
