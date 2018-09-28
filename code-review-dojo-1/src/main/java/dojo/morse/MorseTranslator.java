@@ -94,7 +94,14 @@ public class MorseTranslator {
 	 * @return a lefordított karaktereket tartalmazó sztring
 	 */
 	public String translateToLetters(String morse) {
-		return null;
+		StringBuilder result = new StringBuilder();
+		if (morse != null) {
+			String[] codes = morse.split("\\s+");
+			for (String code : codes) {
+				result.append(abc.getCharacterByMorseCode(code));
+			}
+		}
+		return result.toString();
 	}
 	
 	/**

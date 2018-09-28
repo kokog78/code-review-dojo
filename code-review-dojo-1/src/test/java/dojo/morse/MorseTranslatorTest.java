@@ -63,4 +63,29 @@ public class MorseTranslatorTest {
 		boolean result = translator.isValidMorseString("......");
 		assertThat(result).isFalse();
 	}
+
+	@Test
+	public void translateToLetters_should_return_valid_String_For_valid_input() {
+		String result = translator.translateToLetters("... --- ...");
+		assertThat(result).isEqualTo("SOS");
+		result = translator.translateToLetters(".- -... -.-.");
+		assertThat(result).isEqualTo("ABC");
+	}
+
+	@Test
+	public void translateToLetters_should_return_valid_String_For_valid_input_with_tabulators() {
+		String result = translator.translateToLetters("...	---	...");
+		assertThat(result).isEqualTo("SOS");
+		result = translator.translateToLetters(".-	-...	-.-.");
+		assertThat(result).isEqualTo("ABC");
+	}
+
+	@Test
+	public void translateToLetters_should_return_valid_String_For_valid_input_with_new_lines() {
+		String result = translator.translateToLetters("...\n---\n...");
+		assertThat(result).isEqualTo("SOS");
+		result = translator.translateToLetters(".-\n-...\n-.-.");
+		assertThat(result).isEqualTo("ABC");
+	}
+
 }
