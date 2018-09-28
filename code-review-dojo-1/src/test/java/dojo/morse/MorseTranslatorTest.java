@@ -5,6 +5,9 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.Test;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class MorseTranslatorTest {
 
 	private final MorseTranslator translator = new MorseTranslator();
@@ -62,5 +65,27 @@ public class MorseTranslatorTest {
 	public void isValidMorseString_should_return_false_for_invalid_morse_code() throws Exception {
 		boolean result = translator.isValidMorseString("......");
 		assertThat(result).isFalse();
+	}
+
+	@Test
+	public void translateToMorseCodes_should_return_empty_list_for_null() {
+		List<MorseCode> test = translator.translateToMorseCodes(null);
+		assertThat(test.isEmpty()).isTrue();
+	}
+
+	@Test
+	public void translateToMorseCodes_should_return_empty_list_for_empty_string(){
+		List<MorseCode> test = translator.translateToMorseCodes("");
+		assertThat(test.isEmpty()).isTrue();
+	}
+
+	@Test
+	public void translateToMorseCodes_should_throw_exception_for_foreign_character(){
+		List<MorseCode> test = translator.translateToMorseCodes("      ABSBSJLA 	         LKSDFJLSDF");
+		StringBuilder apjafasza = new StringBuilder();
+		for (MorseCode kurvaanyja : test) {
+			apjafasza.append(kurvaanyja.getCode());
+		}
+		assertThat(apjafasza.toString().equals(".--......-.......---.-...-.-..-.-...-....-..---.-.....-....-.")).isTrue();
 	}
 }
