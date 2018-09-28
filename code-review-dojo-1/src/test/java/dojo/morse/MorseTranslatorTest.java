@@ -3,6 +3,7 @@ package dojo.morse;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 public class MorseTranslatorTest {
@@ -62,5 +63,14 @@ public class MorseTranslatorTest {
 	public void isValidMorseString_should_return_false_for_invalid_morse_code() throws Exception {
 		boolean result = translator.isValidMorseString("......");
 		assertThat(result).isFalse();
+	}
+
+	@Test
+	public void translateToLetters_should_return_string(){
+		MorseCode[] codeArray = new MorseCode[2];
+		codeArray[0] = new MorseCode('A', ".-");
+		codeArray[1] = new MorseCode('H', "....");
+
+		Assert.assertEquals("AH",translator.translateToLetters(codeArray));
 	}
 }
