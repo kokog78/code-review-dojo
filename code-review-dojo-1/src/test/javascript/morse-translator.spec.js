@@ -78,6 +78,11 @@ describe('MorseTranslator', () => {
                     const result = translator.canBeTranslatedToMorse(' ');
                     expect(result).to.be.true;
                 });
+                
+                it('should return false for invalid morse code', () => {
+                    const result = translator.canBeTranslatedToMorse('......');
+                    expect(result).to.be.false;
+                });
 
                 it('should return true for tab', () => {
                     const result = translator.canBeTranslatedToMorse('   ');
@@ -88,6 +93,7 @@ describe('MorseTranslator', () => {
                     const result = translator.canBeTranslatedToMorse('058');
                     expect(result).to.be.true;
                 });
+
         
             });
 
