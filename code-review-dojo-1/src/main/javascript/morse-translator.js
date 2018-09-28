@@ -89,7 +89,13 @@ module.exports = class MorseTranslator {
      * @return a lefordított karaktereket tartalmazó sztring
      */
     translateToLetters(morse) {
-
+      let morseCodes = [];
+      let text = "";
+      morseCodes = morse.split(/\s+/);
+      morseCodes.forEach(code => {
+        text += this.abc.getCharacterByMorseCode(code);
+      });
+      return text;
     }
 
     /**
@@ -98,7 +104,10 @@ module.exports = class MorseTranslator {
      * @param morse a morze jeleket tartalmazó tömb
      * @return a lefordított karaktereket tartalmazó sztring
      */
-    translateToLetters(...codes) {
+
+
+     
+    translateToLetters2(...codes) {
 
     }
 };
