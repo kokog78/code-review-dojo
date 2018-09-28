@@ -1,9 +1,10 @@
 package dojo.morse;
 
+import org.junit.Assert;
+import org.junit.Test;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-
-import org.junit.Test;
 
 public class MorseTranslatorTest {
 
@@ -62,5 +63,67 @@ public class MorseTranslatorTest {
 	public void isValidMorseString_should_return_false_for_invalid_morse_code() throws Exception {
 		boolean result = translator.isValidMorseString("......");
 		assertThat(result).isFalse();
+	}
+
+	@Test
+	public void itranslateToLetters_should_return_not_if_param_null_withoutValidCheck() throws Exception {
+		MorseCode[] morseCodeArray = new MorseCode[]{null};
+		String result = translator.translateToLetters(Boolean.FALSE, morseCodeArray);
+		Assert.assertNotNull(result);
+	}
+
+	@Test
+	public void itranslateToLetters_should_return_not_if_param_empty_withoutValidCheck() throws Exception {
+		MorseCode[] morseCodeArray = new MorseCode[]{};
+		String result = translator.translateToLetters(Boolean.FALSE, morseCodeArray);
+		Assert.assertNotNull(result);
+	}
+
+	@Test
+	public void itranslateToLetters_should_return_charackters_withoutValidCheck() throws Exception {
+		MorseCode[] morseCodeArray = new MorseCode[]{
+				new MorseCode('A', ".-"),
+				new MorseCode('B', "-...")};
+
+
+		String result = translator.translateToLetters(Boolean.FALSE, morseCodeArray);
+		Assert.assertNotNull(result);
+		Assert.assertEquals("AB", result);
+	}
+
+	@Test
+	public void itranslateToLetters_should_return_charackters_if_array_contains_empty_withoutValidCheck() throws Exception {
+		MorseCode[] morseCodeArray = new MorseCode[]{
+				new MorseCode('A', ".-"),
+				null,
+				new MorseCode('B', "-...")};
+
+		String result = translator.translateToLetters(Boolean.FALSE, morseCodeArray);
+		Assert.assertNotNull(result);
+		Assert.assertEquals("AB", result);
+	}
+
+	@Test
+	public void itranslateToLetters_should_return_charackters_if_array_contains_empty_withValidCheck() throws Exception {
+		MorseCode[] morseCodeArray = new MorseCode[]{
+				new MorseCode('A', ".-"),
+				null,
+				new MorseCode('B', "-...")};
+
+		String result = translator.translateToLetters(Boolean.TRUE, morseCodeArray);
+		Assert.assertNotNull(result);
+		Assert.assertEquals("AB", result);
+	}
+
+	@Test
+	public void itranslateToLetters_should_return_charackters_if_array_contains_inValidCode() throws Exception {
+		MorseCode[] morseCodeArray = new MorseCode[]{
+				new MorseCode('A', ".-"),
+				new MorseCode('A', ".......-"),
+				new MorseCode('B', "-...")};
+
+		String result = translator.translateToLetters(Boolean.TRUE, morseCodeArray);
+		Assert.assertNotNull(result);
+		Assert.assertEquals("AB", result);
 	}
 }
