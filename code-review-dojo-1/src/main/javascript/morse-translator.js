@@ -78,7 +78,11 @@ module.exports = class MorseTranslator {
      * @return a lefordított morzejelek
      */
     translateToMorseCodes(text) {
-
+        if (!text) {
+            return [];
+        }
+        const morseArray = this.translateToMorseString(text).split(' ');
+        return morseArray;
     }
 
     /**
