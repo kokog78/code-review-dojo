@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+//branch
+
 class MorseAbc {
 
 	private final Map<Character, MorseCode> signsByCharacter = new HashMap<>();

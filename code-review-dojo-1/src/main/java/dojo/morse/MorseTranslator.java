@@ -102,9 +102,17 @@ public class MorseTranslator {
 	 * Sosem ad vissza <code>null</code> értéket.
 	 * @param morse a morze jeleket tartalmazó tömb
 	 * @return a lefordított karaktereket tartalmazó sztring
+	 * Lehocz
 	 */
-	public String translateToLetters(MorseCode ... codes) {
-		return null;
+	public String translateToLetters(MorseCode ... codes)
+	{
+		String returnString="";
+
+		for (int i = 0; i < codes.length ; i++) {
+			returnString+=codes[i].getCharacter();
+		}
+
+		return returnString;
 	}
 	
 }
