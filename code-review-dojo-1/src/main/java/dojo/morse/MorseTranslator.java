@@ -93,8 +93,40 @@ public class MorseTranslator {
 	 * @param morse a morze jeleket tartalmazó sztring
 	 * @return a lefordított karaktereket tartalmazó sztring
 	 */
-	public String translateToLetters(String morse) {
-		return null;
+	public String translateToLettersFromString(String morse) {
+
+		if(morse == null) {
+			return null;
+		}
+
+		if(!isValidMorseString(morse)){
+			return null;
+		}
+
+		String[] splittedMorseCodes = morse.split("\\s+");
+		if(splittedMorseCodes == null || splittedMorseCodes.length == 0){
+			return null;
+		}
+
+		StringBuilder builder = new StringBuilder();
+		for(String morseCode : splittedMorseCodes){
+			builder.append(abc.getCharacterByMorseCode(morseCode));
+		}
+
+		return builder.toString();
+	}
+
+	private boolean isContainsOnlyMorseChars(String morse){
+		if(morse == null){
+			return false;
+		}
+
+		if (!morse.matches("[\\.|\\-|\\s]*")) {
+			return false;
+		}
+
+		return true;
+
 	}
 	
 	/**
@@ -103,7 +135,7 @@ public class MorseTranslator {
 	 * @param morse a morze jeleket tartalmazó tömb
 	 * @return a lefordított karaktereket tartalmazó sztring
 	 */
-	public String translateToLetters(MorseCode ... codes) {
+	public String translateToLettersFromCodes(MorseCode ... codes) {
 		return null;
 	}
 	
