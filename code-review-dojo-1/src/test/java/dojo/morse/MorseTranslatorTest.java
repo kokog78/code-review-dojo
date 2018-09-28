@@ -63,4 +63,12 @@ public class MorseTranslatorTest {
 		boolean result = translator.isValidMorseString("......");
 		assertThat(result).isFalse();
 	}
+
+	@Test
+	public void canBeTranslatedToMorse() throws Exception {
+		String textToCheck = "ABC.||^";
+		boolean result = translator.canBeTranslatedToMorse(textToCheck);
+		System.out.println("az alabbi szoveg >>>" + textToCheck + "<<< lefordithatosaga: " + result);
+		assertThat(result).isFalse();
+	}
 }

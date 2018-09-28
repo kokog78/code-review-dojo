@@ -11,7 +11,7 @@ public class MorseTranslator {
 		abc.init();
 	}
 	
-	public String translateToMorseString(String text) {
+	public String translateToMorseString(String text) throws IllegalArgumentException  {
 		StringBuilder result = new StringBuilder();
 		if (text != null) {
 			for (int i=0; i<text.length(); i++) {
@@ -26,6 +26,7 @@ public class MorseTranslator {
 				default:
 					String morse = abc.getMorseCodeByCharacter(c);
 					if (morse == null) {
+						System.out.println("Illegal szar");
 						throw new IllegalArgumentException(String.format("Cannot find morse code for: %s", c));
 					}
 					if (result.length() > 0) {
@@ -38,7 +39,8 @@ public class MorseTranslator {
 		}
 		return result.toString();
 	}
-	
+
+
 	/**
 	 * Ellenőrzi, hogy a megadott morze sztring érvényes kódokat tartalmaz-e.
 	 * A bemenetben a rövid jelek "."-tal, a hosszú jelek "-"-sal szerepelnek.
@@ -63,7 +65,6 @@ public class MorseTranslator {
 		}
 		return true;
 	}
-	
 	/**
 	 * Ellenőrzi, hogy a megadott szöveg lefordítható-e morzejelekre.
 	 * Ez akkor igaz, ha csak lefordítható karaktereket, szóközöket, tabulátorokat és sortöréseket tartalmaz.
@@ -71,9 +72,18 @@ public class MorseTranslator {
 	 * @return a bemenet lefordítható morze kódra?
 	 */
 	public boolean canBeTranslatedToMorse(String text) {
-		return false;
+		boolean itCanBeTranslated = true;
+		try
+		{
+			String resultString = translateToMorseString(text);
+		}
+		catch (Exception exception){
+			itCanBeTranslated = false;
+		}
+		return itCanBeTranslated;
 	}
-	
+
+
 	/**
 	 * Visszaadja a morzejeleket tartalmazó listát, amit a bemenet alapján fordított.
 	 * Ha a bemenet <code>null</code> vagy üres sztring, üres listát ad.
@@ -103,7 +113,7 @@ public class MorseTranslator {
 	 * @param morse a morze jeleket tartalmazó tömb
 	 * @return a lefordított karaktereket tartalmazó sztring
 	 */
-	public String translateToLetters(MorseCode ... codes) {
+	public String translateToLetters(MorseCode ... morse) {
 		return null;
 	}
 	
