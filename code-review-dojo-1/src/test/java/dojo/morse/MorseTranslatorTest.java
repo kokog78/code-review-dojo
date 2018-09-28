@@ -75,7 +75,11 @@ public class MorseTranslatorTest {
 				new MorseCode('Z', "--.."),
 				new MorseCode('s', "..."),
 				new MorseCode('u', "..-")));
- 		assertThat(result);
+		String checkString = "";
+		for (int i = 0; i < expectedResult.size(); i++) {
+			checkString.concat(String.valueOf(expectedResult.get(i).getCharacter()));
+		}
+ 		assertThat(result.equals(checkString));
 		//--.. ... ..-
 	}
 }
