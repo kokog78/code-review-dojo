@@ -67,4 +67,38 @@ describe('MorseTranslator', () => {
 
     });
 
+    describe('translateToMorseCodes()', () => {
+
+        it('should return empty array for undefined', () => {
+            const result = translator.translateToMorseCodes(undefined);
+            expect(result).to.deep.equals([]);
+        });
+
+        it('should return empty array for null', () => {
+            const result = translator.translateToMorseCodes(null);
+            expect(result).to.deep.equals([]);
+        });
+
+        it('should return empty array for empty string', () => {
+            const result = translator.translateToMorseCodes('');
+            expect(result).to.deep.equals([]);
+        });
+
+        it('should translate text to morse', () => {
+            const result = translator.translateToMorseCodes('ABC');
+            expect(result).to.deep.equals(['.-', '-...', '-.-.']);
+        });
+
+        it('should skip whitespaces', () => {
+            const result = translator.translateToMorseCodes('\r\nA B\t\n\rC');
+            expect(result).to.deep.equals(['.-', '-...', '-.-.']);
+        });
+
+        it('should throw error for illegal character', () => {
+            expect(() => translator.translateToMorseCodes('ABC.')).to.throw;
+        });
+
+    });
+
+
 });
