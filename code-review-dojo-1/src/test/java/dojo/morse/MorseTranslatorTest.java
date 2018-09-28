@@ -5,6 +5,10 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class MorseTranslatorTest {
 
 	private final MorseTranslator translator = new MorseTranslator();
@@ -62,5 +66,16 @@ public class MorseTranslatorTest {
 	public void isValidMorseString_should_return_false_for_invalid_morse_code() throws Exception {
 		boolean result = translator.isValidMorseString("......");
 		assertThat(result).isFalse();
+	}
+
+	@Test
+	public void isTranslatingToMorseCodes_should_return_list_of_morse_code() throws Exception {
+		List<MorseCode> result = translator.translateToMorseCodes("Zsu");
+		List<MorseCode> expectedResult = new ArrayList<>(Arrays.asList(
+				new MorseCode('Z', "--.."),
+				new MorseCode('s', "..."),
+				new MorseCode('u', "..-")));
+ 		assertThat(result);
+		//--.. ... ..-
 	}
 }

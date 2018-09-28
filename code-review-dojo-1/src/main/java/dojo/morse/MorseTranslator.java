@@ -1,5 +1,7 @@
 package dojo.morse;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class MorseTranslator {
@@ -83,7 +85,32 @@ public class MorseTranslator {
 	 * @return a lefordított morzejelek
 	 */
 	public List<MorseCode> translateToMorseCodes(String text) {
-		return null;
+		ArrayList<MorseCode> morseCodeList = new ArrayList<>();
+		if (text == null || text.isEmpty()) {
+			return Collections.emptyList();
+		} else {
+			for (int i = 0; i < text.length(); i++) {
+				char c = text.charAt(i);
+				switch (c) {
+					case ' ':
+					case '\t':
+					case '\r':
+					case '\n':
+						// a szóközt kihagyjuk
+						break;
+					default:
+						String morse = abc.getMorseCodeByCharacter(c);
+						if (morse == null) {
+							throw new IllegalArgumentException(String.format("Cannot find morse code for: %s", c));
+						} else {
+							morseCodeList.add(new MorseCode(c, morse));
+						}
+						break;
+				}
+			}
+		}
+		return morseCodeList;
+
 	}
 	
 	/**
@@ -100,7 +127,7 @@ public class MorseTranslator {
 	/**
 	 * Visszaadja a morzejelekhez tartozó betűket.
 	 * Sosem ad vissza <code>null</code> értéket.
-	 * @param morse a morze jeleket tartalmazó tömb
+	 * @param //morse a morze jeleket tartalmazó tömb
 	 * @return a lefordított karaktereket tartalmazó sztring
 	 */
 	public String translateToLetters(MorseCode ... codes) {
