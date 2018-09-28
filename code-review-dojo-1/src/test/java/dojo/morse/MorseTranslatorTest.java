@@ -86,6 +86,6 @@ public class MorseTranslatorTest {
 	@Test
 	public void translateToLetters_should_return_translatedstring_for_valid_morse_code() throws Exception {
 		String result = translator.translateToLettersFromString(" .- 	-... ");
-		assertThat(result != null);
+		assertThat(result.equals("AB"));
 	}
 }
