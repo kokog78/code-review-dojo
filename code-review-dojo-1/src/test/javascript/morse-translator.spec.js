@@ -67,4 +67,24 @@ describe('MorseTranslator', () => {
 
     });
 
+
+    describe('translateToLetters()', () => {
+
+      it('should return B', () => {
+        const result = translator.translateToLetters('-...');
+        expect(result).to.equals('B');
+      });
+
+      it('should return O', () => {
+        const result = translator.translateToLetters('---');
+        expect(result).to.equals('O');
+      });
+
+      it('should return BO', () => {
+        const result = translator.translateToLetters('-... ---');
+        expect(result).to.equals('BO');
+      });
+      
+  });
+
 });
