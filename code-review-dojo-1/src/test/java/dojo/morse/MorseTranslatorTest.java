@@ -3,6 +3,7 @@ package dojo.morse;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import com.intellij.util.xmlb.annotations.Text;
 import org.junit.Test;
 
 public class MorseTranslatorTest {
