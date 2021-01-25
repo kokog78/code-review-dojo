@@ -63,4 +63,29 @@ public class MorseTranslatorTest {
 		boolean result = translator.isValidMorseString("......");
 		assertThat(result).isFalse();
 	}
+
+
+	@Test
+	public void translateToLetters_should_return_null_for_null_morse_code() throws Exception {
+		String result = translator.translateToLettersFromString(null);
+		assertThat(result == null);
+	}
+
+	@Test
+	public void translateToLetters_should_return_null_for_empty_morse_code() throws Exception {
+		String result = translator.translateToLettersFromString("");
+		assertThat(result == null);
+	}
+
+	@Test
+	public void translateToLetters_should_return_null_for_invalid_morse_code() throws Exception {
+		String result = translator.translateToLettersFromString("AB");
+		assertThat(result == null);
+	}
+
+	@Test
+	public void translateToLetters_should_return_translatedstring_for_valid_morse_code() throws Exception {
+		String result = translator.translateToLettersFromString(" .- 	-... ");
+		assertThat(result.equals("AB"));
+	}
 }
