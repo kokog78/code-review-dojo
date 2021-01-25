@@ -63,4 +63,16 @@ public class MorseTranslatorTest {
 		boolean result = translator.isValidMorseString("......");
 		assertThat(result).isFalse();
 	}
+
+	@Test
+	public void canBeTranslatedToMorse_should_return_true_for_valid_morse_code() throws Exception {
+		boolean result = translator.canBeTranslatedToMorse("Hello \nworld\t");
+		assertThat(result).isTrue();
+	}
+
+	@Test
+	public void canBeTranslatedToMorse_should_return_false_for_invalid_morse_code() throws Exception {
+		boolean result = translator.canBeTranslatedToMorse("123$ß");
+		assertThat(result).isFalse();
+	}
 }

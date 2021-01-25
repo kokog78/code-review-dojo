@@ -71,6 +71,10 @@ public class MorseTranslator {
 	 * @return a bemenet lefordítható morze kódra?
 	 */
 	public boolean canBeTranslatedToMorse(String text) {
+		String translationRule = "^[A-Za-z\\s\\t]+$";
+		if (text.matches(translationRule)) {
+			return true;
+		}
 		return false;
 	}
 	
