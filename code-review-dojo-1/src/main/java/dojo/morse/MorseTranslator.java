@@ -104,7 +104,11 @@ public class MorseTranslator {
 	 * @return a lefordított karaktereket tartalmazó sztring
 	 */
 	public String translateToLetters(MorseCode ... codes) {
-		return null;
+		String charsByMorseCodes = "";
+		for (MorseCode code: codes) {
+			charsByMorseCodes += abc.getCharacterByMorseCode(code.getCode());
+		}
+		return charsByMorseCodes;
 	}
 	
 }
